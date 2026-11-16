@@ -4,26 +4,26 @@ class Person
 {
 protected:
     Vector2 position;
-    int health, maxHealth;
+    unsigned int health, maxHealth;
     float speed;
     Color color;
 
 public:
-    Person(Vector2 position_arg, int maxHealth_arg, float speed_arg, Color color_arg);
+    Person(Vector2 position_arg, unsigned int maxHealth_arg=100, float speed_arg, Color color_arg);
 
     void setPosition(Vector2 position_arg);
-    void setHealth(int health_arg);
+    void setHealth(unsigned int health_arg);
     void setSpeed(float speed_arg);
     void setColor(Color color_arg);
 
     Vector2 getPosition() const;
-    int getHealth() const;
-    int getMaxHealth() const;
+    unsigned int getHealth() const;
+    unsigned int getMaxHealth() const;
     float getSpeed() const;
     Color getColor() const;
 
     bool isAlive() const;
-    void takeDamage(int damage_arg);
+    void takeDamage(unsigned int damage_arg);
 
     virtual void move(float dt) = 0;
     virtual void draw() const = 0;
