@@ -9,7 +9,7 @@ protected:
     Color color;
 
 public:
-    Person(Vector2 position_arg, unsigned int maxHealth_arg=100, float speed_arg, Color color_arg);
+    Person(Vector2 position_arg, float speed_arg, Color color_arg, unsigned int maxHealth_arg = 100);
 
     void setPosition(Vector2 position_arg);
     void setHealth(unsigned int health_arg);

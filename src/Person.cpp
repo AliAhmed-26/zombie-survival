@@ -1,6 +1,6 @@
 #include "Person.h"
 
-Person::Person(Vector2 position_arg, unsigned int maxHealth_arg, float speed_arg, Color color_arg) : position{position_arg}, health{maxHealth_arg}, maxHealth{maxHealth_arg}, speed{speed_arg}, color{color_arg}
+Person::Person(Vector2 position_arg, float speed_arg, Color color_arg, unsigned int maxHealth_arg) : position{position_arg}, health{maxHealth_arg}, maxHealth{maxHealth_arg}, speed{speed_arg}, color{color_arg}
 {
 }
 
