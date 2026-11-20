@@ -1,3 +1,4 @@
+#pragma once
 #include "../include/Person.h"
 #include "raylib.h"
 
