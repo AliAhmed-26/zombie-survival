@@ -88,29 +88,3 @@ void Player::draw() const
 {   
     DrawRectangleRec(getBounds(),color);
 }
-
-
-int main()
-{
-    InitWindow(800, 600, "Zombie Survival");
-    SetTargetFPS(60);
-
-    Player player({100, 100}, 200, BLUE, 40, 60);
-
-    while (!WindowShouldClose())
-    {
-        player.handleInput();
-        player.move(GetFrameTime());
-
-        BeginDrawing();
-        ClearBackground(RAYWHITE);
-
-        player.draw();
-
-        EndDrawing();
-    }
-
-    CloseWindow();
-
-    return 0;
-}
