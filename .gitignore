@@ -69,4 +69,6 @@ Testing/
 
 # Raylib local libraries
 raylib/
-.vscode
+
+# vscode folder
+.vscode/
