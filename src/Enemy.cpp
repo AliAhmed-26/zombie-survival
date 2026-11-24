@@ -90,7 +90,7 @@
         return {position.x, position.y, width, height};
     }
 
-    void Enemy::move(float dt, const std::vector<Rectangle> &obstacles) override
+    void Enemy::move(float dt, const std::vector<Rectangle> &obstacles)
     {
         float moveX = movementDirection.x * speed * dt;
         float moveY = movementDirection.y * speed * dt;
@@ -116,7 +116,7 @@
         checkBoundary();
     }
 
-    void Enemy::draw() const override
+    void Enemy::draw() const
     {
         DrawRectangleRec(getBounds(), color);
     }
