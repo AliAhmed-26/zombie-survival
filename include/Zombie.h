@@ -1,12 +1,10 @@
 #pragma once 
 #include "raylib.h"
 #include "Enemy.h"
+#include "Player.h"
 
 class Zombie : public Enemy
 {
-    protected:
-        unsigned int damage;
-
     public:
         Zombie(Vector2 position_arg,
         float speed_arg,
@@ -16,7 +14,7 @@ class Zombie : public Enemy
         unsigned int maxHealth_arg,
         unsigned int damage_arg);
 
-        void attack();      //When zombie attacks player
+        void attack(Player& player);      //When zombie attacks player
 
    
 };
