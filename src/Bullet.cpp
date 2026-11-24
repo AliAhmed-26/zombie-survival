@@ -12,7 +12,7 @@ Bullet::Bullet(Vector2 start, Vector2 target, float speed, int damage, float rad
     Vector2 diff = Vector2Subtract(target, start);
     if (Vector2Length(diff) == 0.0f)
     {
-        active = false;                   // no direction, so the bullet is useless
+        active = false; // no direction, so the bullet is useless
     }
     else
     {
@@ -20,18 +20,31 @@ Bullet::Bullet(Vector2 start, Vector2 target, float speed, int damage, float rad
     }
 }
 
+void Bullet::Load()
+{
+    texture = LoadTexture("assets/bullet/bullet.png");
+}
+
+void Bullet::Unload()
+{
+    UnloadTexture(texture);
+}
+
 void Bullet::Update(float deltaTime)
 {
-    if (!active) return;
+    if (!active)
+        return;
 
     position = Vector2Add(position, Vector2Scale(direction, speed * deltaTime));
 
-    if (IsOffScreen()) Deactivate();
+    if (IsOffScreen())
+        Deactivate();
 }
 
 void Bullet::Draw() const
 {
-    if (active) DrawCircleV(position, radius, YELLOW);
+    if (active)
+        DrawTexture(texture, position.x, position.y, BLUE);
 }
 
 bool Bullet::IsActive() const { return active; }
