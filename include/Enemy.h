@@ -39,5 +39,4 @@ public:
     Rectangle getBounds() const;
 
     void move(float dt, const std::vector<Rectangle> &obstacles) override;
-    void draw() const override;
 };

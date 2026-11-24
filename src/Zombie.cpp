@@ -8,7 +8,7 @@ Zombie::Zombie(Vector2 position_arg,
                float height_arg,
                unsigned int maxHealth_arg,
                unsigned int damage_arg)
-    : Enemy(position_arg, speed_arg, color_arg, width_arg, height_arg, maxHealth_arg, damage_arg)
+    : Enemy(position_arg, speed_arg, color_arg, width_arg, height_arg, maxHealth_arg, damage_arg), texture{0}
 {
 }
 

@@ -10,4 +10,20 @@ weakZombie::weakZombie(Vector2 position_arg)
              50,    // Health
              5      // Attack
       )
-{}
+{
+}
+
+void weakZombie::load()
+{
+    texture = LoadTexture("assets/enemy/weak_zombie.png");
+}
+
+void weakZombie::unload()
+{
+    UnloadTexture(texture);
+}
+
+void weakZombie::draw() const
+{
+    DrawTexture(texture, position.x, position.y, WHITE);
+}

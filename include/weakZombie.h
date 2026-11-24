@@ -4,6 +4,9 @@
 
 class weakZombie : public Zombie
 {
-    public:
-        weakZombie(Vector2 position_arg) ; 
+public:
+    weakZombie(Vector2 position_arg);
+    void load();
+    void unload();
+    void draw() const override;
 };

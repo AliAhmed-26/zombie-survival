@@ -116,7 +116,4 @@
         checkBoundary();
     }
 
-    void Enemy::draw() const
-    {
-        DrawRectangleRec(getBounds(), color);
-    }
+  
