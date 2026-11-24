@@ -1,10 +1,7 @@
 #include "Zombie.h"
 #include "Player.h"
 
-class Zombie : public Enemy
-{
-public:
-    Zombie(Vector2 position_arg,
+    Zombie::Zombie(Vector2 position_arg,
            float speed_arg,
            Color color_arg,
            float width_arg,
@@ -15,7 +12,7 @@ public:
     {
     }
 
-    void attack(Player &player) // When zombie attacks player
+    void Zombie::attack(Player &player) // When zombie attacks player
     {
         {
             if (!isAlive() || !player.isAlive())
@@ -27,4 +24,3 @@ public:
             }
         }
     }
-};

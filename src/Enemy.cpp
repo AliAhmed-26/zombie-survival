@@ -1,16 +1,8 @@
 #include "Enemy.h"
 #include <cmath>
 
-class Enemy : public Person
-{
-protected:
-    float width;
-    float height;
-    unsigned int damage;
-    Vector2 movementDirection{0, 0};
 
-public:
-    Enemy(
+    Enemy::Enemy(
         Vector2 position_arg,
         float speed_arg,
         Color color_arg,
@@ -22,14 +14,14 @@ public:
     }
 
     // SET WIDTH AND HEIGHT
-    void setWidth(float w)
+    void Enemy::setWidth(float w)
     {
         if (w >= 0 && w <= 800)
         {
             width = w;
         }
     }
-    void setHeight(float h)
+    void Enemy::setHeight(float h)
     {
         if (h >= 0 && h <= 600)
         {
@@ -38,17 +30,17 @@ public:
     }
 
     // GET WIDTH AND HEIGHT
-    float getWidth() const
+    float Enemy::getWidth() const
     {
         return width;
     }
-    float getHeight() const
+    float Enemy::getHeight() const
     {
         return height;
     }
 
     // MOVE ENEMY TOWARDS PLAYER
-    void followPlayer(Vector2 playerPosition, float dt)
+    void Enemy::followPlayer(Vector2 playerPosition, float dt)
     {
         float dx = playerPosition.x - position.x;
         float dy = playerPosition.y - position.y;
@@ -67,7 +59,7 @@ public:
     }
 
     // KEEP ENEMY INSIDE GAME WINDOW
-    void checkBoundary()
+    void Enemy::checkBoundary()
     {
         {
             if (position.x < 0)
@@ -93,12 +85,12 @@ public:
     }
 
     // RETURN ENEMY RECTANGLE FOR COLLISION
-    Rectangle getBounds() const
+    Rectangle Enemy::getBounds() const
     {
         return {position.x, position.y, width, height};
     }
 
-    void move(float dt, const std::vector<Rectangle> &obstacles) override
+    void Enemy::move(float dt, const std::vector<Rectangle> &obstacles) override
     {
         float moveX = movementDirection.x * speed * dt;
         float moveY = movementDirection.y * speed * dt;
@@ -124,8 +116,7 @@ public:
         checkBoundary();
     }
 
-    void draw() const override
+    void Enemy::draw() const override
     {
         DrawRectangleRec(getBounds(), color);
     }
-};
