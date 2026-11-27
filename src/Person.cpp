@@ -1,4 +1,4 @@
-#include "Person.h"
+#include "../include/Person.h"
 
 // Constructor: sets all starting values. Health starts at max.
 Person::Person(Vector2 position_arg, float speed_arg, Color color_arg, unsigned int maxHealth_arg) : position{position_arg}, health{maxHealth_arg}, maxHealth{maxHealth_arg}, speed{speed_arg}, color{color_arg}

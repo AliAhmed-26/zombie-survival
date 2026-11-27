@@ -35,11 +35,10 @@ public:
     bool isAlive() const;
 
     // True if the person can move into newBounds without hitting any obstacle
-    bool canMoveTo(
-        Rectangle nextPosition,
-        const std::vector<Rectangle> &obstacles) const;
+    bool canMoveTo(Rectangle nextPosition, const std::vector<Rectangle> &obstacles) const;
 
     virtual void move(float dt,const std::vector<Rectangle> &obstacles) = 0;
+    // virtual void move(float dt) = 0;
     virtual void draw() const = 0;
 
     virtual ~Person() = default;
