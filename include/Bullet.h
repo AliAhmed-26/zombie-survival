@@ -9,12 +9,13 @@
 class Bullet
 {
 private:
-    Vector2 position;   // current position
-    Vector2 direction;  // unit vector (length 1) showing where it flies
-    float speed;        // pixels per second
-    float radius;       // size of the bullet (used for drawing + collision)
-    int damage;         // damage dealt to a zombie on hit
-    bool active;        // false = bullet is finished and should be removed
+    Texture2D texture;
+    Vector2 position;  // current position
+    Vector2 direction; // unit vector (length 1) showing where it flies
+    float speed;       // pixels per second
+    float radius;      // size of the bullet (used for drawing + collision)
+    int damage;        // damage dealt to a zombie on hit
+    bool active;       // false = bullet is finished and should be removed
 
 public:
     // 'target' is where the player is aiming (mouse position).
@@ -22,13 +23,15 @@ public:
     Bullet(Vector2 start, Vector2 target, float speed, int damage, float radius = 4.0f);
 
     // Game loop functions
-    void Update(float deltaTime);   // move the bullet; deactivate if off-screen
-    void Draw() const;              // draw the bullet with raylib
+    void Update(float deltaTime); // move the bullet; deactivate if off-screen
+    void Load();
+    void Unload();
+    void Draw() const; // draw the bullet with raylib
 
-    // State 
+    // State
     bool IsActive() const;
-    void Deactivate();              // call this when it hits a zombie
-    bool IsOffScreen() const;       // outside the game window?
+    void Deactivate();        // call this when it hits a zombie
+    bool IsOffScreen() const; // outside the game window?
 
     // Getters (used for collision checks in Game)
     Vector2 GetPosition() const;

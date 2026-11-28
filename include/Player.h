@@ -29,10 +29,10 @@ public:
     float getWidth() const;
     float getHeight() const;
 
-    //HANDLE INPUT FOR PLAYER MOVEMENT e.g W,D,A,S
+    // HANDLE INPUT FOR PLAYER MOVEMENT e.g W,D,A,S
     void handleInput();
 
-    //KEEPS THE PLAYER WITHIN THE GAME WINDOW
+    // KEEPS THE PLAYER WITHIN THE GAME WINDOW
     void checkBoundary();
 
     //RETURN THE PLAYER RECTANGLES WILL BE USED FOR COLLISION BETWEEN PLAYER AND ZOMBIE
@@ -46,5 +46,4 @@ public:
 
     // DRAW THE PLAYER
     void draw() const override;
-
 };

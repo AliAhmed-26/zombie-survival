@@ -18,20 +18,21 @@
 class Weapon
 {
 private:
-    std::string name;       // e.g. "Pistol"
-    int damage;             // damage of each bullet
-    float fireRate;         // shots per second (e.g. 3.0 = 3 shots/sec)
-    float bulletSpeed;      // speed given to every bullet it creates
-    float reloadTime;       // seconds a reload takes
+    Texture2D texture;
+    std::string name;  // e.g. "Pistol"
+    int damage;        // damage of each bullet
+    float fireRate;    // shots per second (e.g. 3.0 = 3 shots/sec)
+    float bulletSpeed; // speed given to every bullet it creates
+    float reloadTime;  // seconds a reload takes
 
-    Ammo ammo;              // composition: a Weapon HAS an Ammo
+    Ammo ammo; // composition: a Weapon HAS an Ammo
 
-    float fireCooldown;     // time left before the next shot is allowed
-    bool reloading;         // true while a reload is in progress
-    float reloadTimer;      // time spent reloading so far
+    float fireCooldown; // time left before the next shot is allowed
+    bool reloading;     // true while a reload is in progress
+    float reloadTimer;  // time spent reloading so far
 
 public:
-    Weapon(const std::string& name = "Pistol",
+    Weapon(const std::string &name = "Pistol",
            int damage = 25,
            float fireRate = 3.0f,
            float bulletSpeed = 600.0f,
@@ -40,27 +41,30 @@ public:
            int maxReserve = 60);
 
     // Game loop
-    void Update(float deltaTime);   // updates cooldown + reload timer
+    void Load();
+    void Unload();
+    void Draw(Vector2 player_position, float rotation) const;
+    void Update(float deltaTime); // updates cooldown + reload timer
 
     // Shooting
     // Tries to shoot. If allowed, creates a Bullet, adds it to 'bullets'
     // and returns true. Returns false if reloading, on cooldown or empty.
-    bool Fire(Vector2 origin, Vector2 target, std::vector<Bullet>& bullets);
+    bool Fire(Vector2 origin, Vector2 target, std::vector<Bullet> &bullets);
     bool CanFire() const;
 
     // Reloading
-    void StartReload();             // begins reload (if possible)
+    void StartReload(); // begins reload (if possible)
     bool IsReloading() const;
     float GetReloadProgress() const; // 0.0 to 1.0 (for a UI reload bar)
 
     // Pickups / reset
-    void AddAmmo(int amount);       // pick up spare bullets
-    void Reset();                   // for game restart
+    void AddAmmo(int amount); // pick up spare bullets
+    void Reset();             // for game restart
 
     // Getters (used by Member 4's UI)
-    const std::string& GetName() const;
+    const std::string &GetName() const;
     int GetDamage() const;
-    const Ammo& GetAmmo() const;
+    const Ammo &GetAmmo() const;
 };
 
 #endif // WEAPON_H

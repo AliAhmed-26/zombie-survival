@@ -4,9 +4,11 @@
 
 class Enemy : public Person
 {
-private:
+protected:
     float width;
     float height;
+    unsigned int damage;
+    Vector2 movementDirection{0, 0};
 
 public:
     Enemy(
@@ -15,25 +17,26 @@ public:
         Color color_arg,
         float width_arg,
         float height_arg,
-        unsigned int maxHealth_arg = 100
+        unsigned int maxHealth_arg,
+        unsigned int damage_arg
     );
 
-    // SET WIDTH AND HEIGHT
+    // Setter Functions
     void setWidth(float w);
     void setHeight(float h);
 
+    //Getter Functions
     float getWidth() const;
     float getHeight() const;
 
-    // MOVE ENEMY TOWARDS PLAYER
+    //To move enemy towards player
     void followPlayer(Vector2 playerPosition, float dt);
 
-    // KEEP ENEMY INSIDE GAME WINDOW
+    // To check that zombie are in window or not
     void checkBoundary();
 
-    // RETURN ENEMY RECTANGLE FOR COLLISION
+    // Gives enemy rectangle for the collision detection
     Rectangle getBounds() const;
 
-    void move(float dt) override;
-    void draw() const override;
+    void move(float dt, const std::vector<Rectangle> &obstacles) override;
 };
