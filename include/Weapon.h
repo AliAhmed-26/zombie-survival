@@ -32,7 +32,7 @@ private:
     float reloadTimer;  // time spent reloading so far
 
 public:
-    Weapon(const std::string &name = "Pistol",
+    Weapon(const std::string &name,
            int damage,
            float fireRate,
            float bulletSpeed,

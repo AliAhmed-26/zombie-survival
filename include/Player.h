@@ -8,16 +8,16 @@ class Player : public Person
 private:
     float width;
     float height;
-    float hitBoxWidth = width * 0.70;
-    float hitBoxHeight = height * 0.60;
+    float hitBoxWidth;
+    float hitBoxHeight;
     Vector2 movementDirection{0, 0};
     Texture2D playerTexture;
-    float rotation;
-    float rotationSpeed = 3.0f;
+    float rotation = 100;
+    float rotationSpeed = 10.0f;
     float targetRotation = 0.0f;
 
 public:
-    Player(Vector2 position_arg, float speed_arg, Color color_arg, float width_arg, float height_arg, float hitBoxWidth_arg, float hitBoxHeight_arg, unsigned int maxHealth_arg );
+    Player(Vector2 position_arg, float speed_arg, Color color_arg, float width_arg, float height_arg, unsigned int maxHealth_arg);
 
     // DESTRUCTOR
     ~Player();
@@ -37,6 +37,7 @@ public:
 
     // RETURN THE PLAYER RECTANGLES WILL BE USED FOR COLLISION BETWEEN PLAYER AND ZOMBIE
     Rectangle getPlayer() const;
+    Vector2 getCenter() const;
 
     // CONTROLS THE ROTATION OF PLAYER
     void rotateTowardsMouse();

@@ -1,10 +1,11 @@
 #include "../include/Player.h"
 #include "../include/Map.h"
+#include <iostream>
 
-Player::Player(Vector2 position_arg, float speed_arg, Color color_arg, float width_arg, float height_arg, float hitBoxWidth_arg, float hitBoxHeight_arg, unsigned int maxHealth_arg) : Person(position_arg, speed_arg, color_arg, maxHealth_arg), width{width_arg}, height{height_arg}, hitBoxWidth{hitBoxWidth_arg}, hitBoxHeight{hitBoxHeight_arg}
+Player::Player(Vector2 position_arg, float speed_arg, Color color_arg, float width_arg, float height_arg, unsigned int maxHealth_arg) : Person(position_arg, speed_arg, color_arg, maxHealth_arg), width{width_arg}, height{height_arg}, hitBoxWidth{width * 0.70f}, hitBoxHeight{height * 0.60f}
 {
     // LOAD THE PLAYER AND STORE IN THE PLAYERTEXTURE
-    playerTexture = LoadTexture("assets/player/player.png");
+    playerTexture = LoadTexture("assets/player/player2.png");
 }
 
 // ----------SETTERS-----------
@@ -33,6 +34,14 @@ float Player::getHeight() const
 Rectangle Player::getPlayer() const
 {
     return Rectangle{position.x + (width - hitBoxWidth) / 2, position.y + (height - hitBoxHeight) / 2, hitBoxWidth, hitBoxHeight};
+}
+
+Vector2 Player::getCenter() const
+{
+    return {
+        position.x + width / 2.0f,
+        position.y + height / 2.0f};
+    ;
 }
 
 // KEEPS THE PLAYER WITH IN TH WINDOW
@@ -72,25 +81,25 @@ void Player::handleInput()
     // FOR MOVING PLAYER UPWARD
     if (IsKeyDown(KEY_W) || IsKeyDown(KEY_UP))
     {
-        movementDirection.y = -1;
+        movementDirection.y -= 1;
     }
 
     // FOR MOVING PLAYER DOWNWARD
-    else if (IsKeyDown(KEY_S) || IsKeyDown(KEY_DOWN))
+    if (IsKeyDown(KEY_S) || IsKeyDown(KEY_DOWN))
     {
-        movementDirection.y = 1;
+        movementDirection.y += 1;
     }
 
     // FOR MOVING PLAYER RIGHT
-    else if (IsKeyDown(KEY_D) || IsKeyDown(KEY_RIGHT))
+    if (IsKeyDown(KEY_D) || IsKeyDown(KEY_RIGHT))
     {
-        movementDirection.x = 1;
+        movementDirection.x += 1;
     }
 
     // FOR MOVING PLAYER LEFT
-    else if (IsKeyDown(KEY_A) || IsKeyDown(KEY_LEFT))
+    if (IsKeyDown(KEY_A) || IsKeyDown(KEY_LEFT))
     {
-        movementDirection.x = -1;
+        movementDirection.x -= 1;
     }
 }
 
@@ -120,13 +129,21 @@ void Player::move(float dt, const std::vector<Rectangle> &obstacles)
 // ROTATES THE PLAYER ACCORDING TO THE DIRECTION IN WHICH THE MOUSE MOVES
 void Player::rotateTowardsMouse()
 {
-    Vector2 mouseMovement = GetMouseDelta();
-    if (mouseMovement.x != 0 || mouseMovement.y != 0)
-    {
-        float angle = std::atan2(mouseMovement.y, mouseMovement.x) * RAD2DEG;
-        targetRotation = angle - 90.0f;
-    }
+    Vector2 mousePosition = GetMousePosition();
+
+    Vector2 playerCenter = {
+        position.x + width / 2,
+        position.y + height / 2};
+
+    float angle = std::atan2(
+                      mousePosition.y - playerCenter.y,
+                      mousePosition.x - playerCenter.x) *
+                  RAD2DEG;
+
+    targetRotation = angle - 90.0f;
+
     float difference = std::remainder(targetRotation - rotation, 360.0f);
+
     rotation += difference * rotationSpeed * GetFrameTime();
 }
 
@@ -135,7 +152,9 @@ void Player::draw() const
 {
     DrawTexturePro(playerTexture, Rectangle{0, 0, (float)playerTexture.width, (float)playerTexture.height},
                    Rectangle{position.x + width / 2, position.y + height / 2, width, height}, Vector2{width / 2, height / 2}, rotation, WHITE);
-    DrawRectangleLinesEx(getPlayer(), 1, RED);
+    // DrawRectangleLinesEx(getPlayer(), 1, RED);
+
+    // DrawCircle(300, 300, 50, RED);
 }
 
 // DESCTRUCT THE PLAYER

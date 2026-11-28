@@ -20,7 +20,8 @@ private:
 public:
     // 'target' is where the player is aiming (mouse position).
     // The constructor calculates the direction from start -> target.
-    Bullet(Vector2 start, Vector2 target, float speed, int damage, float radius = 4.0f);
+    Bullet(Vector2 start, Vector2 target, float speed, int damage = 100, float radius = 4.0f);
+    Bullet() = default;
 
     // Game loop functions
     void Update(float deltaTime); // move the bullet; deactivate if off-screen

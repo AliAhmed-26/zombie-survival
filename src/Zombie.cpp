@@ -18,7 +18,7 @@ void Zombie::attack(Player &player) // When zombie attacks player
         if (!isAlive() || !player.isAlive())
             return;
 
-        if (CheckCollisionRecs(getBounds(), player.getBounds()))
+        if (CheckCollisionRecs(getBounds(), player.getPlayer()))
         {
             player.takeDamage(damage);
         }

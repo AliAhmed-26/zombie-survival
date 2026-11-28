@@ -1,7 +1,8 @@
 #include "../include/Map.h"
-
-Map::Map(const std::string& path):texture{LoadTexture(path.c_str())}
+Map::Map() : texture{LoadTexture("assets/environment/map.png")}
 {
+    scaleX = (float)GetScreenWidth() / texture.width;
+    scaleY = (float)GetScreenHeight() / texture.height;
     // STORE THE OBSTCALES
     storeObstacles();
 
@@ -21,7 +22,7 @@ void Map::storeObstacles()
         {192, 8, 379, 265},
         {1110, 8, 414, 292},
         {1005, 248, 110, 45},
-        
+
         // FENCES AND WALLS
         {0, 292, 179, 40},
         {292, 847, 120, 45},
@@ -36,7 +37,7 @@ void Map::storeObstacles()
         {290, 465, 23, 55},
         {205, 510, 85, 18},
         {130, 495, 80, 20},
-        
+
         // FOR BLUE CAR
         {1445, 490, 40, 25},
         {1480, 498, 65, 22},
@@ -60,22 +61,29 @@ void Map::storeObstacles()
         {1613, 771, 40, 80},
 
         // FOR LARGE TREE BELOW RED CAR
-        {73, 665, 150, 130},  
-        {136, 784, 30, 50},  
+        {73, 665, 150, 130},
+        {136, 784, 30, 50},
         {175, 765, 15, 30},
-        
+
         // UPPER STREET LAMP
         {950, 123, 50, 38},
         {978, 145, 10, 90},
         {970, 233, 25, 40},
         // LOWER STREET LAMP
         {1035, 523, 47, 60},
-        {1049, 600, 25, 50}
-    };
+        {1049, 600, 25, 50}};
+
+    for (Rectangle &obstacle : obstacles)
+    {
+        obstacle.x *= scaleX;
+        obstacle.y *= scaleY;
+        obstacle.width *= scaleX;
+        obstacle.height *= scaleY;
+    }
 }
 
 // RETURNS ALL THE OBSTACLES IN THE MAP
-const std::vector<Rectangle>& Map::getObstacles() const
+const std::vector<Rectangle> &Map::getObstacles() const
 {
     return obstacles;
 }
@@ -84,9 +92,14 @@ void Map::draw()
 {
     if (IsTextureValid(texture))
     {
-        DrawTexture(texture, 0, 0, WHITE);
+        DrawTexturePro(
+            texture,
+            {0, 0, (float)texture.width, (float)texture.height},
+            {0, 0, (float)GetScreenWidth(), (float)GetScreenHeight()},
+            {0, 0},
+            0.0f,
+            WHITE);
     }
-    
 }
 
 Map::~Map()

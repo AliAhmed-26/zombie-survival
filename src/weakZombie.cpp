@@ -1,21 +1,22 @@
 #include "raylib.h"
 #include "WeakZombie.h"
+#include <iostream>
 
 WeakZombie::WeakZombie(Vector2 position_arg)
     : Zombie(position_arg,
-             2.0f,  // Speed
-             GREEN, // Color
-             25.0f, // Width
-             25.0f, // Height
-             50,    // Health
-             5      // Attack
+             30.0f,   // Speed
+             GREEN,  // Color
+             130.0f, // Width
+             130.0f, // Height
+             50,     // Health
+             5       // Attack
       )
 {
+    texture = LoadTexture("assets/enemy/weak_zombie.png");
 }
 
 void WeakZombie::load()
 {
-    texture = LoadTexture("assets/enemy/weak_zombie.png");
 }
 
 void WeakZombie::unload()
@@ -25,5 +26,14 @@ void WeakZombie::unload()
 
 void WeakZombie::draw() const
 {
-    DrawTexture(texture, position.x, position.y, WHITE);
+    DrawTexturePro(
+        texture,
+        {0, 0, (float)texture.width, (float)texture.height},
+        {position.x,
+         position.y,
+         width,
+         height},
+        {0, 0},
+        0.0f,
+        WHITE);
 }

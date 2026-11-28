@@ -4,19 +4,19 @@
 
 StrongZombie::StrongZombie(Vector2 position_arg)
     : Zombie(position_arg,
-             1.0f,  // Speed
-             RED,   // Color
-             45.0f, // Width
-             45.0f, // Height
-             150,   // Health
-             20     // Attack
+             20.0f, // Speed
+             RED,  // Color
+             150.0f, // Width
+             150.0f, // Height
+             150,  // Health
+             20    // Attack
       )
 {
+    texture = LoadTexture("assets/enemy/strong_zombie.png");
 }
 
 void StrongZombie::load()
 {
-    texture = LoadTexture("assets/enemy/strong_zombie.png");
 }
 
 void StrongZombie::unload()
@@ -26,5 +26,15 @@ void StrongZombie::unload()
 
 void StrongZombie::draw() const
 {
-    DrawTexture(texture, position.x, position.y, WHITE);
+
+    DrawTexturePro(
+        texture,
+        {0, 0, (float)texture.width, (float)texture.height},
+        {position.x,
+         position.y,
+         width,
+         height},
+        {0, 0},
+        0.0f,
+        WHITE);
 }

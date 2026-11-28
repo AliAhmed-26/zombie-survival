@@ -1,28 +1,31 @@
 #include "Weapon.h"
 #include "raymath.h"
+#include <iostream>
 
-Weapon::Weapon(const std::string &name, int damage, float fireRate,
-               float bulletSpeed, float reloadTime,
+Weapon::Weapon(const std::string &name, int damage, float fireRate, float bulletSpeed,
+               float reloadTime,
                int magazineSize, int maxReserve)
     : name(name),
       damage(damage),
       fireRate(fireRate),
-      bulletSpeed(bulletSpeed),
+      bulletSpeed{bulletSpeed},
       reloadTime(reloadTime),
       ammo(magazineSize, maxReserve),
       fireCooldown(0.0f),
       reloading(false),
       reloadTimer(0.0f),
-      texture{0} {}
+      texture{0}
+{
+}
 
 void Weapon::Load()
 {
-    texture = LoadTexture("assets/weapon.png");
+    // texture = LoadTexture("assets/weapon.png");
 }
 
 void Weapon::Unload()
 {
-    UnloadTexture(texture);
+    // UnloadTexture(texture);
 }
 
 void Weapon::Draw(Vector2 position, float rotation) const
@@ -79,12 +82,17 @@ bool Weapon::CanFire() const
 
 bool Weapon::Fire(Vector2 origin, Vector2 target, std::vector<Bullet> &bullets)
 {
-    if (!CanFire())
-        return false;
-    if (Vector2Length(Vector2Subtract(target, origin)) == 0.0f)
-        return false;
 
-    bullets.emplace_back(origin, target, bulletSpeed, damage);
+
+    if (!CanFire())
+    {
+
+        return false;
+    }
+    // if (Vector2Length(Vector2Subtract(target, origin)) == 0.0f)
+    //     return false;
+
+    bullets.emplace_back(origin, target, bulletSpeed, damage, 40.0f);
     ammo.Consume();
     fireCooldown = 1.0f / fireRate;
     return true;

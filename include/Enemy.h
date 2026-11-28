@@ -40,3 +40,4 @@ public:
 
     void move(float dt, const std::vector<Rectangle> &obstacles) override;
 };
+
