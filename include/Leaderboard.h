@@ -16,12 +16,12 @@ private:
     std::vector<Score> scores;
 
 public:
-    void addScore(std::string playerName, int points);      //Add a new player's score
+    void addScore(std::string &playerName, int points); // Add a new player's score
 
-    void sortScores();              //Bubble Sorting scores from highest to lowest
+    void sortScores(); // Bubble Sorting scores from highest to lowest
 
-    void draw() const;              //To Draw leaderboard on screen
+    void draw() const; // To Draw leaderboard on screen
 
-    std::vector<Score> getScores() const;   //To return all scores
-    void clearScores();     // Clear all scores
+    std::vector<Score> &getScores() const; // To return all scores
+    void clearScores();                    // Clear all scores
 };
