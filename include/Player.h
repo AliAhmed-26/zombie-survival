@@ -17,7 +17,7 @@ private:
     float targetRotation = 0.0f;
 
 public:
-    Player(Vector2 position_arg, float speed_arg, Color color_arg, float width_arg, float height_arg, float hitBoxWidth_arg, float hitBoxHeight_arg, unsigned int maxHealth_arg = 100);
+    Player(Vector2 position_arg, float speed_arg, Color color_arg, float width_arg, float height_arg, float hitBoxWidth_arg, float hitBoxHeight_arg, unsigned int maxHealth_arg );
 
     // DESTRUCTOR
     ~Player();

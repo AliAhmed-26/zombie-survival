@@ -33,12 +33,12 @@ private:
 
 public:
     Weapon(const std::string &name = "Pistol",
-           int damage = 25,
-           float fireRate = 3.0f,
-           float bulletSpeed = 600.0f,
-           float reloadTime = 1.5f,
-           int magazineSize = 12,
-           int maxReserve = 60);
+           int damage,
+           float fireRate,
+           float bulletSpeed,
+           float reloadTime,
+           int magazineSize,
+           int maxReserve);
 
     // Game loop
     void Load();

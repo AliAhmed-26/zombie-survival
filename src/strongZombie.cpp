@@ -1,8 +1,8 @@
 
 #include "raylib.h"
-#include "strongZombie.h"
+#include "StrongZombie.h"
 
-strongZombie::strongZombie(Vector2 position_arg)
+StrongZombie::StrongZombie(Vector2 position_arg)
     : Zombie(position_arg,
              1.0f,  // Speed
              RED,   // Color
@@ -14,17 +14,17 @@ strongZombie::strongZombie(Vector2 position_arg)
 {
 }
 
-void strongZombie::load()
+void StrongZombie::load()
 {
     texture = LoadTexture("assets/enemy/strong_zombie.png");
 }
 
-void strongZombie::unload()
+void StrongZombie::unload()
 {
     UnloadTexture(texture);
 }
 
-void strongZombie::draw() const
+void StrongZombie::draw() const
 {
     DrawTexture(texture, position.x, position.y, WHITE);
 }

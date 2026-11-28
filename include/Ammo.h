@@ -14,17 +14,17 @@ private:
     int maxReserve;      // max spare bullets the player can carry
 
 public:
-    // Constructor 
-    Ammo(int magazineSize = 12, int maxReserve = 60);
+    // Constructor
+    Ammo(int magazineSize, int maxReserve);
 
-    // Using ammo 
-    bool HasAmmo() const;        // true if magazine has at least 1 bullet
-    bool Consume();              // uses 1 bullet; returns false if empty
+    // Using ammo
+    bool HasAmmo() const; // true if magazine has at least 1 bullet
+    bool Consume();       // uses 1 bullet; returns false if empty
 
-    // Reloading 
-    bool NeedsReload() const;    // magazine is not full
-    bool CanReload() const;      // magazine not full AND reserve > 0
-    void Reload();               // moves bullets from reserve into magazine
+    // Reloading
+    bool NeedsReload() const; // magazine is not full
+    bool CanReload() const;   // magazine not full AND reserve > 0
+    void Reload();            // moves bullets from reserve into magazine
 
     // Pickups/reset
     void AddReserve(int amount); // add spare bullets (capped at maxReserve)

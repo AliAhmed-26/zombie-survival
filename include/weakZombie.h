@@ -2,10 +2,10 @@
 #include "Zombie.h"
 #include "raylib.h"
 
-class weakZombie : public Zombie
+class WeakZombie : public Zombie
 {
 public:
-    weakZombie(Vector2 position_arg);
+    WeakZombie(Vector2 position_arg);
     void load();
     void unload();
     void draw() const override;
